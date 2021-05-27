@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle } from 'reactstrap';
 import CharacterCollapse from './CharacterCollapse';
 
 const CharacterCard = (props) => {

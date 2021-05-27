@@ -56,7 +56,7 @@ const Homepage = () => {
                 <h1>Disney Test</h1>
                 {/* <Header/> */}
                 <CardContainer disneyChars={data.data}/>
-                <Pagination handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage}></Pagination>
+                <Pagination handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} previousPage={data.previousPage} nextPage={data.nextPage}></Pagination>
             </>
         );
     }
