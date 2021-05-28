@@ -1,33 +1,28 @@
-import {Pagination, PaginationItem, PaginationLink} from "reactstrap"
+import { Pagination, PaginationItem, PaginationLink, Row } from "reactstrap"
 
 const CharacterPagination = (props) => {
-    const {handleNextPage, handlePreviousPage, previousPage, nextPage} = props;
-
-    const ifPrevious = () => {
-        return previousPage.length === 0;
-    }
-    const ifNext = () => {
-        return nextPage.length === 0;
-    }
+    const { handleNextPage, handlePreviousPage, previousPage, nextPage } = props;
 
     return (
         <>
-            <Pagination>
-                <PaginationItem >
-                    <PaginationLink previous href="#" onClick={handlePreviousPage}>
+            <Row className="mx-auto" style={{ width: "200px", backgroundColor: "blanchedalmond" }}>
+                <Pagination className="mx-auto">
+                    <PaginationItem disabled={previousPage === undefined}>
+                        <PaginationLink previous href="#" onClick={handlePreviousPage}>
 
-                    </PaginationLink>
-                </PaginationItem>
-                <PaginationItem active>
-                    Current Page
-                </PaginationItem>
-                <PaginationItem >
-                    <PaginationLink next href="#" onClick={handleNextPage}>
+                        </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem active>
+                        Current Page
+                    </PaginationItem>
+                    <PaginationItem disabled={nextPage === undefined}>
+                        <PaginationLink next href="#" onClick={handleNextPage}>
 
-                    </PaginationLink>
-                </PaginationItem>
+                        </PaginationLink>
+                    </PaginationItem>
 
-            </Pagination>
+                </Pagination>
+            </Row>
         </>
     )
 }

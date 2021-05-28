@@ -1,40 +1,51 @@
-import {Container, Col, Row} from "reactstrap";
+import { Container, Col, Row } from "reactstrap";
 import CharacterCard from "./CharacterCard";
 
 const CharacterCardContainer = (props) => {
-    const {disneyChars, filterQuery} = props;
-        
+    const { disneyChars, filterQuery } = props;
+
     // const filterQuery = () => (data) => {data.data.name.toLowerCase().includes(searchQuery.toLowerCase())};
     // const filterByQuery = (character) => {
     //     character.name.toLowerCase().includes(filterQuery.toLowerCase());
     // }
-    
-        // listOfNames.filter()
+
+    // listOfNames.filter()
 
 
     if (filterQuery.length > 0) {
         return (
             <>
-                <Container>
+
+                <Row xs="3">
+
                     {disneyChars.filter(character => character.name.toLowerCase().includes(filterQuery.toLowerCase())).map((character) => (
-                        <CharacterCard key={character._id} character={character} />
+
+                        <Col>
+                            <CharacterCard key={character._id} character={character} />
+                        </Col>
                     ))}
-                </Container>
+
+                </Row>
             </>
         )
     } else {
         return (
             <>
-                <Container>
+                <Row xs="3" >
+
                     {disneyChars.map((character) => (
-                        <CharacterCard key={character._id} character={character} />
+                        <Col>
+                            <CharacterCard key={character._id} character={character} />
+                        </Col>
+
                     ))}
-                </Container>
+
+                </Row>
             </>
         )
     }
 
-    
+
 
 }
 

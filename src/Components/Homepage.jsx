@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import CharacterCardContainer from "./CharacterCardContainer";
-import Header from "./Header";
-
-import axios from "axios";
 import CharacterPagination from "./CharacterPagination";
+import Header from "./Header";
+import { Container, Row, Col } from "reactstrap";
+import axios from "axios";
 
 
 const Homepage = () => {
@@ -48,7 +48,7 @@ const Homepage = () => {
         });
     }
 
-    
+
 
     const handleFilter = (e) => {
         // const listOfNames = data.data.map((character) => {
@@ -67,10 +67,13 @@ const Homepage = () => {
     } else {
         return (
             <>
-                <h1>Disney Test</h1>
-                <Header handleFilter={handleFilter} query={searchQuery}/>
-                <CharacterCardContainer disneyChars={data.data} filterQuery={searchQuery}/>
-                <CharacterPagination handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} previousPage={data.previousPage} nextPage={data.nextPage}></CharacterPagination>
+                <Container style={{backgroundImage: `url(https://i.pinimg.com/564x/ea/3d/6c/ea3d6cbaedab89f6b54927e3f40bd55c.jpg)`}}>
+                    <Header handleFilter={handleFilter} query={searchQuery} />
+                    <br/>
+                    <CharacterCardContainer disneyChars={data.data} filterQuery={searchQuery} />
+                    <br/>
+                    <CharacterPagination handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} previousPage={data.previousPage} nextPage={data.nextPage}></CharacterPagination>
+                </Container>
             </>
         );
     }

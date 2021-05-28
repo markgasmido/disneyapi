@@ -1,9 +1,18 @@
 import { useState } from 'react';
-import { Card, CardImg, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, ListGroup } from 'reactstrap';
 import CharacterCollapse from './CharacterCollapse';
 
 const CharacterCard = (props) => {
     const { films, shortFilms, tvShows, videoGames, parkAttractions, allies, enemies, sourceUrl, name, imageUrl } = props.character;
+
+    let loadImageUrl = "";
+    if (imageUrl === undefined) {
+        loadImageUrl ="https://static.wikia.nocookie.net/disney/images/7/7c/Noimage.png";
+    } else {
+        const idx = imageUrl.search(/\/revision/);
+        loadImageUrl = imageUrl.slice(0, idx);
+    }
+    
 
     const [isFilmOpen, setIsFilmOpen] = useState(false);
     const [isShortFilmOpen, setIsShortFilmOpen] = useState(false);
@@ -37,17 +46,20 @@ const CharacterCard = (props) => {
 
     return (
         <>
-            <Card>
-                <CardImg src="https://d23.com/app/uploads/2013/04/1125-x-325-Walt-Disney-Archives-1024x296.jpg" alt={name} />
+            <Card >
+                <CardImg top src={loadImageUrl} alt={name}/>
                 <CardBody>
-                    <CardTitle>{name}</CardTitle>
-                    <CharacterCollapse data={films} toggle={toggleIsFilmOpen} state={isFilmOpen}/>
-                    <CharacterCollapse data={shortFilms} toggle={toggleIsShortFilmOpen} state={isShortFilmOpen}/>
-                    <CharacterCollapse data={tvShows} toggle={toggleIsTVShowOpen} state={isTVShowOpen}/>
-                    <CharacterCollapse data={videoGames} toggle={toggleIsGamesOpen} state={isGamesOpen}/>
-                    <CharacterCollapse data={parkAttractions} toggle={toggleIsParkOpen} state={isParkOpen}/>
-                    <CharacterCollapse data={allies} toggle={toggleIsAlliesOpen} state={isAliiesOpen}/>
-                    <CharacterCollapse data={enemies} toggle={toggleIsEnemiesOpen} state={isEnemiesOpen}/>
+                    <CardTitle style={{fontWeight: "bolder", fontSize: 30 }}>{name}</CardTitle>
+                    <ListGroup>
+
+                        <CharacterCollapse name="Films" data={films} toggle={toggleIsFilmOpen} state={isFilmOpen} />
+                        <CharacterCollapse name="Short Films" data={shortFilms} toggle={toggleIsShortFilmOpen} state={isShortFilmOpen} />
+                        <CharacterCollapse name="TV Shows" data={tvShows} toggle={toggleIsTVShowOpen} state={isTVShowOpen} />
+                        <CharacterCollapse name="Video Games" data={videoGames} toggle={toggleIsGamesOpen} state={isGamesOpen} />
+                        <CharacterCollapse name="Park Attractions" data={parkAttractions} toggle={toggleIsParkOpen} state={isParkOpen} />
+                        <CharacterCollapse name="Allies" data={allies} toggle={toggleIsAlliesOpen} state={isAliiesOpen} />
+                        <CharacterCollapse name="Enemies" data={enemies} toggle={toggleIsEnemiesOpen} state={isEnemiesOpen} />
+                    </ListGroup>
                 </CardBody>
             </Card>
         </>
