@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import CardContainer from "./CharacterCardContainer";
+import CharacterCardContainer from "./CharacterCardContainer";
 import Header from "./Header";
 
 import axios from "axios";
-import Pagination from "./CharacterPagination";
+import CharacterPagination from "./CharacterPagination";
 
 
 const Homepage = () => {
     const [data, setData] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
+
+    const [searchQuery, setSearchQuery] = useState("");
     const URL = "http://api.disneyapi.dev/characters";
 
     useEffect(() => {
@@ -46,6 +48,18 @@ const Homepage = () => {
         });
     }
 
+    
+
+    const handleFilter = (e) => {
+        // const listOfNames = data.data.map((character) => {
+        //     return character.name;
+        // });
+        // console.log(listOfNames);
+        setSearchQuery(e.target.value);
+
+        // listOfNames.filter()
+    }
+
     if (error) {
         return <h1>{error.message}</h1>
     } else if (!isLoaded) {
@@ -54,9 +68,9 @@ const Homepage = () => {
         return (
             <>
                 <h1>Disney Test</h1>
-                {/* <Header/> */}
-                <CardContainer disneyChars={data.data}/>
-                <Pagination handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} previousPage={data.previousPage} nextPage={data.nextPage}></Pagination>
+                <Header handleFilter={handleFilter} query={searchQuery}/>
+                <CharacterCardContainer disneyChars={data.data} filterQuery={searchQuery}/>
+                <CharacterPagination handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage} previousPage={data.previousPage} nextPage={data.nextPage}></CharacterPagination>
             </>
         );
     }

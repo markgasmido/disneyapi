@@ -13,7 +13,7 @@ const CharacterPagination = (props) => {
     return (
         <>
             <Pagination>
-                <PaginationItem disabled={ifPrevious} >
+                <PaginationItem >
                     <PaginationLink previous href="#" onClick={handlePreviousPage}>
 
                     </PaginationLink>
@@ -21,7 +21,7 @@ const CharacterPagination = (props) => {
                 <PaginationItem active>
                     Current Page
                 </PaginationItem>
-                <PaginationItem disabled={ifNext}>
+                <PaginationItem >
                     <PaginationLink next href="#" onClick={handleNextPage}>
 
                     </PaginationLink>
